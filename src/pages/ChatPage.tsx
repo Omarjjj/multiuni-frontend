@@ -818,6 +818,8 @@ const ChatPage: React.FC = () => {
                   <div className="ai-loading-icon">
                     <div className="ai-loading-circle"></div>
                     <div className="ai-loading-circle"></div>
+                    <div className="ai-loading-circle"></div>
+                    <div className="ai-loading-circle"></div>
                   </div>
                   <div className="loading-text-container">
                     <p className="loading-text-primary">سارة عم بتفكر </p>
