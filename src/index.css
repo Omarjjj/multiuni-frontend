@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Tajawal', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* Updated background and text colors for a warmer feel */
+  background-color: #F8F4EC; /* Lighter, warmer beige */
+  color: #5D534A; /* Softer brown */
+  overflow-x: hidden;
+  position: relative;
+  text-align: right;
+  min-height: 100vh; /* Ensure body takes full height */
+}
+
+/* Improve performance for animations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+.hardware-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Animated background, noise, line patterns, and shapes CSS removed */
+
+#root {
+  width: 100%;
+  /* Changed height to min-height for flexibility */
+  min-height: 100vh;
+  position: relative; /* Needed for z-index context */
+  z-index: 1; /* Ensure content is above background */
+}
+
+/* Custom scrollbar - Refined */
+::-webkit-scrollbar {
+  width: 7px; /* Slightly thinner */
+}
+::-webkit-scrollbar-track {
+  background: #E8DFC7;
+}
+::-webkit-scrollbar-thumb {
+  /* Gradient thumb */
+  background: linear-gradient(180deg, #C4A06F, #B08D57);
+  border-radius: 10px;
+  border: none; /* Remove border */
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #D8B684, #C4A06F); /* Lighter on hover */
+}
+
+/* Custom text selection - Adjusted color */
+::selection {
+  background-color: #C4A06F; /* Softer gold */
+  color: #FFFFFF;
+}
+
+@layer base {
+  :root {
+    /* Updated light theme colors */
+    --background: 39 35% 96%; /* #F8F4EC */
+    --foreground: 30 12% 35%; /* #5D534A */
+    --foreground-h: 30;
+    --foreground-s: 12%;
+    --foreground-l: 35%;
+
+    --card: 40 50% 98%; /* #FDFBF8 - Lighter card */
+    --card-h: 40;
+    --card-s: 50%;
+    --card-l: 98%;
+    --card-rgb: 253, 251, 248; /* RGB components for rgba() */
+    --card-hover: 40 55% 99%; /* Slightly lighter/brighter for hover */
+    --card-foreground: 30 12% 35%; /* #5D534A */
+
+    --popover: 40 50% 98%; /* #FDFBF8 */
+    --popover-foreground: 30 12% 35%; /* #5D534A */
+
+    --primary: 35 45% 55%; /* #B08D57 - Primary accent */
+    --primary-h: 35;
+    --primary-s: 45%;
+    --primary-l: 55%;
+    --primary-lighter: 35 45% 60%; /* Lighter version of --primary */
+    --primary-lighter-h: 35;
+    --primary-lighter-s: 45%;
+    --primary-lighter-l: 60%;
+    --primary-darker: 35 45% 50%;  /* Darker version of --primary */
+    --primary-darker-h: 35;
+    --primary-darker-s: 45%;
+    --primary-darker-l: 50%;
+    --primary-foreground: 40 50% 98%; /* #FDFBF8 */
+    --primary-foreground-h: 40;
+    --primary-foreground-s: 50%;
+    --primary-foreground-l: 98%;
+
+    /* New User Bubble Colors */
+    --user-bubble-bg-main-h: 20;
+    --user-bubble-bg-main-s: 40%;
+    --user-bubble-bg-main-l: 65%;
+    --user-bubble-bg-lighter-h: 20;
+    --user-bubble-bg-lighter-s: 40%;
+    --user-bubble-bg-lighter-l: 70%;
+
+    --secondary: 40 25% 90%; /* #E8DFC7 - Secondary background */
+    --secondary-foreground: 35 45% 55%; /* #B08D57 */
+
+    --muted: 40 25% 90%; /* #E8DFC7 */
+    --muted-foreground: 35 10% 50%; /* #8A8178 - Muted text */
+
+    --accent: 38 30% 85%; /* #E1D8CC - Subtle accent */
+    --accent-h: 38;
+    --accent-s: 30%;
+    --accent-l: 85%;
+    --accent-foreground: 35 45% 55%; /* #B08D57 */
+
+    --destructive: 0 72% 51%; /* #E5484D - Destructive color */
+    --destructive-foreground: 0 0% 98%; /* #FAFAFA */
+
+    --border: 40 20% 85%; /* #DDD3C4 - Border color */
+    --input: 40 20% 85%; /* #DDD3C4 - Input border */
+
+    --ring: 35 45% 55%; /* #B08D57 - Focus ring */
+    --ring-h: 35;
+    --ring-s: 45%;
+    --ring-l: 55%;
+
+    --chart-1: 35 45% 55%; /* #B08D57 */
+    --chart-2: 25 40% 60%; /* #B99F80 */
+    --chart-3: 15 35% 65%; /* #C3AC92 */
+    --chart-4: 40 30% 70%; /* #C8BCA9 */
+    --chart-5: 50 25% 75%; /* #D0C9BA */
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

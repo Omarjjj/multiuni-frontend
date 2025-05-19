@@ -1,0 +1,200 @@
+.beta-notification-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Changed to a more neutral grey for the overlay color, affecting the blur tint */
+  background-color: hsla(0, 0%, 40%, 0.35); 
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  z-index: 1000;
+  backdrop-filter: blur(10px); 
+  padding: 1rem; 
+}
+
+.beta-notification {
+  font-family: 'Tajawal', sans-serif;
+  direction: rtl;
+  background: hsl(var(--primary-h, 35), var(--primary-s, 30%), 97%); 
+  color: var(--muted-foreground, hsl(36, 9%, 77%));
+  padding: 2rem 2.5rem;
+  border-radius: 1.25rem;
+  /* Ensured shadow is neutral grey for blurry focus */
+  box-shadow: 0 12px 45px hsla(0, 0%, 0%, 0.2), 
+              0 0 0 1px var(--border, hsl(35, 20%, 88%)); 
+  border: 1px solid hsla(var(--primary-h, 35), var(--primary-s, 25%), var(--primary-l, 80%), 0.6);
+  max-width: 520px; 
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  animation: subtle-lift 2.8s infinite alternate ease-in-out;
+  will-change: box-shadow, transform;
+}
+
+@keyframes subtle-lift {
+  0% {
+    transform: translateY(0px) scale(1);
+    /* Ensured shadow is neutral grey */
+    box-shadow: 0 10px 30px hsla(0, 0%, 0%, 0.18), 
+                0 0 0 1px var(--border, hsl(35, 20%, 88%));
+  }
+  100% {
+    transform: translateY(-5px) scale(1.015); 
+    /* Ensured shadow is neutral grey */
+    box-shadow: 0 18px 50px hsla(0, 0%, 0%, 0.25), 
+                0 0 0 1px var(--border, hsl(35, 20%, 88%));
+  }
+}
+
+.beta-notification-header {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.sparkle-svg-container {
+  width: 48px; 
+  height: 48px;
+  margin-bottom: 0.75rem;
+  color: hsl(180, 60%, 50%); /* Cyan color for SVG */
+  animation: svg-pulse-rotate 3s infinite ease-in-out;
+}
+
+@keyframes svg-pulse-rotate {
+  0% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+  50% { transform: scale(1.15) rotate(15deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+}
+
+.beta-notification::before { 
+  content: '✨ نسخة تجريبية  ✨'; /* Restored "جامدة" */
+  display: block;
+  font-size: 1.9rem; 
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--primary, hsl(60, 1%, 72%)); /* User-adjusted color */
+  text-shadow: 0 1px 2px hsla(var(--primary-h, 35), var(--primary-s, 30%), var(--primary-l, 90%), 0.5); 
+  position: relative;
+  z-index: 1;
+}
+
+.beta-notification p {
+  margin: 0.6rem 0;
+  font-size: 1rem; 
+  line-height: 1.7;
+  color: var(--foreground, hsl(35, 15%, 35%)); 
+  position: relative;
+  z-index: 1;
+}
+
+.beta-notification .highlight {
+  font-weight: 700;
+  color: var(--primary, hsl(38, 4%, 65%)); /* User-adjusted color */
+  text-shadow: none; 
+}
+
+.beta-notification-close {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  background: hsla(var(--primary-h, 35), var(--primary-s, 15%), var(--primary-l, 50%), 0.05); /* Lighter background */
+  color: var(--muted-foreground, hsl(36, 9%, 77%)); /* Match general muted text */
+  border: 1px solid var(--border, hsl(35, 20%, 85%)); /* Slightly softer border */
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  font-size: 1.4rem;
+  line-height: 32px; 
+  transition: background-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
+  z-index: 10; 
+}
+
+.beta-notification-close:hover {
+  background: hsla(var(--primary-h, 35), var(--primary-s, 20%), var(--primary-l, 50%), 0.1);
+  color: hsl(180, 60%, 50%); /* Cyan on hover for close button */
+  transform: scale(1.1) rotate(90deg);
+}
+
+.beta-progress-bar-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 10px; 
+  background-color: hsla(var(--primary-h, 35), var(--primary-s, 20%), var(--primary-l, 0%), 0.15); /* Slightly darker, more defined container */
+  border-bottom-left-radius: 1.15rem; 
+  border-bottom-right-radius: 1.15rem;
+  overflow: hidden; 
+  z-index: 1;
+  box-shadow: inset 0 1px 3px hsla(var(--primary-h, 35), var(--primary-s, 20%), var(--primary-l, 0%), 0.12); /* Slightly stronger inset for container */
+}
+
+.beta-progress-bar {
+  height: 100%;
+  background-image: linear-gradient(
+    110deg, 
+    hsl(180, 60%, 58%), /* Base cyan - very subtle shimmer target */
+    hsl(182, 58%, 62%), /* Highlight cyan - very close to base */
+    hsl(180, 60%, 58%), 
+    hsl(182, 58%, 62%)
+  );
+  background-size: 400% 100%; /* Significantly increased size for ultra-smooth shimmer */
+  transform-origin: right; 
+  animation: 
+    progress-deplete 10s linear forwards, 
+    shimmer-progress 12s infinite linear; /* Drastically slowed down shimmer */
+  border-radius: 0;
+  /* Added inset shadow directly to the bar for depth */
+  box-shadow: inset 0 1px 2px hsla(180, 80%, 25%, 0.4), /* Darker cyan inset shadow */
+              inset 0 -1px 2px hsla(180, 50%, 85%, 0.3); /* Lighter cyan bottom highlight inset */
+}
+
+@keyframes progress-deplete {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
+
+@keyframes shimmer-progress {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .beta-notification-overlay {
+    backdrop-filter: blur(8px); /* Slightly less blur on mobile if perf is a concern */
+  }
+  .beta-notification {
+    padding: 1.5rem 1.75rem;
+    max-width: calc(100% - 2rem); 
+    margin: 0 1rem;
+  }
+  .sparkle-svg-container {
+    width: 40px;
+    height: 40px;
+  }
+  .beta-notification::before {
+    font-size: 1.6rem;
+  }
+  .beta-notification p {
+    font-size: 0.95rem;
+  }
+  .beta-notification-close {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+    line-height: 28px;
+  }
+  .beta-progress-bar-container {
+    height: 8px; 
+  }
+} 

@@ -1,0 +1,644 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Tajawal', 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  background-size: 50px 50px;
+  position: relative;
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 2rem;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.app-header h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: var(--primary);
+}
+
+.subtitle {
+  color: var(--muted-foreground);
+  font-size: 1.2rem;
+}
+
+/* University Selection Page */
+.university-selection-page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.university-selection-container {
+  max-width: 1200px;
+  width: 100%;
+}
+
+.university-selection-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.university-selection-title {
+  text-align: center;
+  font-size: 3.5rem;
+  font-weight: 400;
+  margin-bottom: 3rem;
+  color: var(--primary);
+  letter-spacing: 1px;
+  position: relative;
+  display: inline-block;
+}
+
+.university-selection-title::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  opacity: 0.6;
+}
+
+.university-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  width: 100%;
+}
+
+/* UNIVERSITY CARD STYLES REMOVED FROM APP.CSS - These are now in UniversityCard.css */
+
+@media (max-width: 900px) {
+  .university-grid {
+    gap: 1.5rem;
+  }
+  .app {
+    padding: 2rem 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .university-grid {
+    gap: 1.5rem;
+  }
+  .app-header h1, .university-selection-title {
+    font-size: 2.5rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
+  .app {
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* Chat Page Styles - Refined to match Landing Page theme */
+.chat-page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem; /* Consistent padding */
+  position: relative;
+  overflow: hidden;
+  direction: rtl;
+  /* Background handled by index.css */
+  color: var(--foreground);
+  font-family: 'Tajawal', 'Outfit', sans-serif;
+}
+
+.chat-container {
+  max-width: 800px;
+  width: 100%;
+  height: calc(100vh - 4rem);
+  /* Subtle gradient for depth */
+  background: linear-gradient(180deg, hsla(var(--card-h, 40), var(--card-s, 50%), var(--card-l, 98%), 0.95), hsla(var(--card-h, 40), var(--card-s, 50%), calc(var(--card-l, 98%) - 2%), 0.92));
+  backdrop-filter: blur(10px); /* Slightly increased blur for effect with gradient */
+  border-radius: var(--radius, 16px); 
+  box-shadow: 0 10px 35px hsla(var(--foreground-h, 30), var(--foreground-s, 12%), var(--foreground-l, 35%), 0.12);
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  border: 1px solid var(--border);
+  overflow: visible;
+  position: relative;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid hsla(var(--foreground-h, 30), var(--foreground-s, 12%), var(--foreground-l, 35%), 0.2);
+  /* Solid, slightly more opaque background for header */
+  background-color: hsla(var(--card-h, 40), var(--card-s, 50%), var(--card-l, 98%), 0.97);
+}
+
+/* Back button style is okay, uses primary color */
+.back-button {
+  margin-left: 1rem;
+  background: none;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.back-button:hover {
+  background-color: var(--accent);
+}
+
+/* Chat title style is okay, uses primary color */
+.chat-title {
+  flex: 1;
+  margin: 0 1rem;
+  font-size: 1.4rem;
+  color: var(--primary);
+  font-weight: 600;
+  text-align: right;
+}
+
+/* University logo style is okay */
+.university-logo.header-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  margin-left: 0.5rem;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease; /* Spring-like transition */
+  will-change: transform, filter;
+}
+
+.university-logo.header-logo:hover {
+  transform: translateY(-2px) scale(1.15) rotate(-5deg); /* Playful hover effect */
+  filter: drop-shadow(0 3px 6px hsla(var(--primary-h, 35), var(--primary-s, 45%), var(--primary-l, 55%), 0.35));
+}
+
+/* Chat utils button style is okay, uses primary color */
+.chat-utils-button {
+  background: none;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.chat-utils-button:hover {
+  background-color: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 5%));
+  transform: scale(1.1);
+}
+
+/* Animated utility button styles - Use CSS Variables */
+.utility-icon-wrapper {
+  position: relative;
+  overflow: visible;
+}
+
+.help-text-bubble {
+  /* Styles moved from inline to CSS */
+  position: absolute;
+  top: -45px;
+  right: -110px;
+  background: var(--primary); /* Use primary color */
+  color: var(--primary-foreground);
+  padding: 8px 14px;
+  border-radius: 16px 16px 16px 0;
+  font-size: 0.9rem;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  white-space: nowrap;
+  /* Animation properties remain inline in component for Framer Motion */
+}
+
+.help-text-bubble::before {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: var(--primary); /* Match bubble background */
+  bottom: -7px;
+  left: 10px;
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
+/* emoji-sparkles styles are okay */
+.emoji-sparkles {
+  font-size: 14px;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+}
+
+/* Chat messages style is okay */
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Chat bubble styles - Adjust colors */
+.chat-bubble {
+  display: flex;
+  max-width: 85%;
+  /* Updated animation */
+  animation: sophisticatedFadeIn 0.5s ease-out;
+}
+
+.chat-bubble-user {
+  margin-left: auto;
+  flex-direction: row-reverse;
+}
+
+.chat-bubble-assistant {
+  margin-right: auto;
+}
+
+.chat-bubble-content {
+  padding: 0.9rem 1.15rem;
+  border-radius: 18px;
+  /* Enhanced shadow */
+  box-shadow: 0 4px 12px hsla(var(--foreground-h, 30), var(--foreground-s, 12%), var(--foreground-l, 35%), 0.08);
+  line-height: 1.6;
+  position: relative;
+  font-size: 0.95rem;
+}
+
+.chat-bubble-user .chat-bubble-content {
+  /* New background color for user messages - Muted Terracotta */
+  background: linear-gradient(135deg, hsl(var(--user-bubble-bg-lighter-h), var(--user-bubble-bg-lighter-s), var(--user-bubble-bg-lighter-l)), hsl(var(--user-bubble-bg-main-h), var(--user-bubble-bg-main-s), var(--user-bubble-bg-main-l)));
+  color: var(--primary-foreground); /* Keeping light text, check contrast */
+  border-radius: 18px 18px 0 18px;
+}
+
+.chat-bubble-assistant .chat-bubble-content {
+  /* Use card background for assistant */
+  background-color: var(--card);
+  color: var(--foreground);
+  border-radius: 18px 18px 18px 0;
+  border: 1px solid var(--border);
+}
+
+/* Avatar styles are okay */
+.chat-bubble-avatar {
+  flex-shrink: 0;
+}
+
+.message-avatar-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: contain;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 3px;
+  border: 1px solid var(--border);
+  min-width: 32px;
+  min-height: 32px;
+}
+
+/* Markdown styles are okay, use theme variables */
+.markdown-content {
+  line-height: 1.65;
+}
+
+.markdown-content p {
+  margin-bottom: 0.85rem;
+}
+
+.markdown-content p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-content a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.markdown-content a:hover {
+  color: hsl(var(--primary-darker));
+}
+
+.markdown-content ul, .markdown-content ol {
+  padding-right: 1.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.markdown-content h1, .markdown-content h2, .markdown-content h3 {
+  margin-top: 1.25rem;
+  margin-bottom: 0.6rem;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.markdown-content pre {
+  background-color: var(--accent);
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius, 0.5rem);
+  overflow-x: auto;
+  font-family: 'Courier New', Courier, monospace;
+  margin-bottom: 0.85rem;
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.markdown-content code {
+  background-color: var(--accent);
+  padding: 0.2em 0.4em;
+  margin: 0 0.1em;
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9em;
+  color: var(--foreground);
+}
+
+/* Chat input area - Adjust colors */
+.chat-input-wrapper {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border);
+  /* Match chat header background */
+  background-color: rgba(var(--card-rgb, 253, 251, 248), 0.95);
+}
+
+.chat-input-container {
+  display: flex;
+  align-items: center;
+  /* Use card background */
+  background-color: var(--card);
+  border-radius: 24px;
+  padding: 0.35rem;
+  border: 1px solid var(--border);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.chat-input-container:focus-within {
+  border-color: var(--ring);
+  /* Enhanced focus shadow */
+  box-shadow: 0 0 0 3px hsla(var(--ring-h, 35), var(--ring-s, 45%), var(--ring-l, 55%), 0.35), 0 3px 10px hsla(var(--foreground-h, 30), var(--foreground-s, 12%), var(--foreground-l, 35%), 0.1);
+}
+
+/* Input style is okay */
+.chat-input {
+  flex: 1;
+  border: none;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  background: transparent;
+  color: var(--foreground);
+  direction: rtl;
+  font-family: 'Tajawal', 'Outfit', sans-serif;
+}
+
+.chat-input:focus {
+  outline: none;
+}
+
+.chat-input::placeholder {
+  color: var(--muted-foreground);
+}
+
+/* Send button style is okay, uses primary */
+.send-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s ease;
+}
+
+.send-button:hover:not(:disabled) {
+  background-color: hsl(var(--primary-lighter));
+  transform: scale(1.05);
+}
+
+.send-button:disabled {
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+  cursor: not-allowed;
+}
+
+/* Old SVG Typing Indicator styles - to be replaced or updated */
+.typing-indicator-svg { /* This class is no longer used by the new SVG */
+  /* color: var(--primary); */ /* Ensure this is removed or repurposed if needed */
+  /* margin: 0.5rem; */
+}
+
+/* New Loading Indicator Styles - Concentric Circles */
+.loading-indicator-bubble .chat-bubble-content {
+  padding: 0.75rem 1rem;
+}
+
+.loading-animation-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+
+.ai-loading-icon {
+  position: relative;
+  width: 40px; /* Adjust size as needed */
+  height: 40px;
+}
+
+.ai-loading-circle {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  animation: loadingSpin 1.2s cubic-bezier(0.34, 0.615, 0.4, 0.985) infinite;
+  border-top-color: hsl(var(--primary-lighter));
+  border-right-color: hsl(var(--primary));
+}
+
+.ai-loading-circle:nth-child(2) {
+  width: 70%;
+  height: 70%;
+  top: 15%;
+  left: 15%;
+  border-top-color: hsl(var(--primary));
+  border-right-color: hsl(var(--primary-darker));
+  animation-duration: 0.9s;
+}
+
+.ai-loading-circle:nth-child(3) {
+  width: 40%;
+  height: 40%;
+  top: 30%;
+  left: 30%;
+  border-top-color: hsla(var(--primary-h), var(--primary-s), var(--primary-l), 0.7);
+  border-right-color: hsla(var(--primary-lighter-h), var(--primary-lighter-s), var(--primary-lighter-l), 0.7);
+  animation-duration: 0.7s;
+}
+
+@keyframes loadingSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text-container {
+  display: flex;
+  flex-direction: column;
+  text-align: left; /* Align text to left, as per image */
+}
+
+.loading-text-primary {
+  font-size: 0.95em;
+  color: var(--foreground); /* Using foreground, could be primary for emphasis */
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.loading-text-secondary {
+  font-size: 0.8em;
+  color: var(--muted-foreground);
+}
+
+.loading-text-secondary .loading-dots::after {
+  display: inline-block;
+  animation: loadingDotsAnimation 1.4s infinite;
+  content: '...'; /* Start with a fixed content that will be animated if needed */
+  width: 1.5em; /* Adjusted width for dots */
+  text-align: left;
+  vertical-align: bottom;
+}
+
+@keyframes loadingDotsAnimation {
+  0% { content: '.'; }
+  33% { content: '..'; }
+  66% { content: '...'; }
+  100% { content: '.'; }
+}
+
+/* Backend status error okay, uses destructive */
+.backend-status-error {
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: var(--radius, 0.5rem);
+  background-color: hsl(var(--destructive-hsl) / 0.15);
+  color: var(--destructive);
+  border: 1px solid hsl(var(--destructive-hsl) / 0.3);
+  font-size: 0.9rem;
+}
+
+/* New keyframe for sophisticated fade in */
+@keyframes sophisticatedFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px); /* Removed scale */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); /* Removed scale */
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  /* Make chat container full width/height on small screens */
+  .chat-page {
+    padding: 0; /* Remove padding */
+  }
+  .chat-container {
+    height: 100vh; /* Full height */
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    border: none; /* Remove border */
+    max-width: none; /* Remove max-width */
+  }
+  /* Adjust header padding */
+  .chat-header {
+    padding: 0.75rem 1rem;
+  }
+  /* Other mobile styles remain */
+  .chat-bubble {
+    max-width: 90%;
+  }
+  .chat-title {
+    font-size: 1.2rem;
+  }
+  .university-logo.header-logo {
+    width: 30px;
+    height: 30px;
+  }
+  .chat-input-wrapper {
+    padding: 0.75rem 1rem;
+  }
+  .chat-input {
+    font-size: 0.9rem;
+  }
+  .send-button {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* Timestamp Styles */
+.message-timestamp {
+  font-size: 0.7em;
+  color: var(--muted-foreground);
+  opacity: 0.6;
+  margin-top: 8px; /* Increased space from message content */
+  display: block; /* Make it block to take its own line */
+}
+
+.chat-bubble-user .message-timestamp {
+  text-align: left; /* Align timestamp to the left for user messages */
+  color: hsla(var(--primary-foreground-h, 40), var(--primary-foreground-s, 50%), var(--primary-foreground-l, 98%), 0.7);
+}
+
+.chat-bubble-assistant .message-timestamp {
+  text-align: right; /* Align timestamp to the right for assistant messages */
+} 

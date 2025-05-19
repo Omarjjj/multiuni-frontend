@@ -1,0 +1,434 @@
+/* Landing Page Styles */
+.university-selection-page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  position: relative;
+  overflow: hidden;
+  direction: rtl;
+}
+
+.university-selection-container {
+  max-width: 1200px;
+  width: 100%;
+  z-index: 2;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.university-selection-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.university-selection-title {
+  text-align: center;
+  font-size: 3.8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+  letter-spacing: 0.5px;
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 2px 5px hsla(var(--primary-h, 35), var(--primary-s, 45%), var(--primary-l, 55%), 0.3), 0 4px 12px hsla(var(--primary-h, 35), var(--primary-s, 45%), var(--primary-l, 55%), 0.2);
+  font-family: 'Tajawal', sans-serif;
+}
+
+.title-decoration {
+  color: hsla(var(--primary-h, 35), var(--primary-s, 45%), var(--primary-l, 55%), 0.95);
+  font-size: 3rem;
+  display: inline-block;
+  margin: 0 1rem;
+  text-shadow: 0 0 18px hsla(var(--primary-h, 35), var(--primary-s, 45%), var(--primary-l, 55%), 0.5);
+  animation: pulse 3s infinite ease-in-out;
+  will-change: opacity, transform;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; transform: scale(0.95); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.university-selection-subtitle {
+  font-size: 1.3rem;
+  color: var(--muted-foreground);
+  font-weight: 300;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.7;
+  letter-spacing: 0.2px;
+  font-family: 'Tajawal', sans-serif;
+}
+
+.university-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2.5rem;
+  width: 100%;
+  margin-top: -2rem;
+  contain: layout;
+}
+
+/* Sara persona styling - Refined */
+.sara-container {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  z-index: 100;
+  cursor: pointer;
+  will-change: transform, opacity;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.sara-container:hover {
+  transform: scale(1.03);
+}
+
+.sara-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, var(--secondary-foreground), var(--primary));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 6px 22px rgba(176, 141, 87, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  z-index: 2;
+  transform: translateZ(0);
+}
+
+.sara-avatar-text {
+  color: var(--primary-foreground);
+  font-size: 24px;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  font-family: 'Tajawal', sans-serif;
+}
+
+.sara-pulse {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  animation: pulse-ring 2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+  will-change: transform, opacity;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+}
+
+.sara-message {
+  background: rgba(253, 251, 248, 0.9);
+  backdrop-filter: blur(8px);
+  border-radius: 18px 18px 18px 2px;
+  padding: 1rem 1.5rem;
+  margin-left: 1rem;
+  color: var(--foreground);
+  font-size: 0.95rem;
+  max-width: 300px;
+  box-shadow: 0 6px 18px rgba(93, 83, 74, 0.15);
+  border: 1px solid var(--border);
+  position: relative;
+  font-family: 'Tajawal', sans-serif;
+  text-align: right;
+}
+
+.sara-message::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -10px;
+  width: 20px;
+  height: 20px;
+  background: rgba(253, 251, 248, 0.9);
+  border-left: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  transform: rotate(45deg) translateY(10px);
+  border-radius: 0 0 0 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .university-selection-title {
+    font-size: 3rem;
+  }
+
+  .title-decoration {
+    font-size: 2.2rem;
+  }
+
+  .university-selection-subtitle {
+    font-size: 1.15rem;
+  }
+
+  .university-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    contain: content;
+  }
+
+  .sara-container {
+    bottom: 1.5rem;
+    left: 1.5rem;
+  }
+
+  .sara-message {
+    max-width: 250px;
+    padding: 0.75rem 1.25rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .university-selection-page {
+    padding: 3rem 1rem;
+  }
+  .university-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .university-selection-title {
+    font-size: 2.5rem;
+  }
+
+  .title-decoration {
+    font-size: 1.9rem;
+    margin: 0 0.25rem;
+  }
+
+  .university-selection-subtitle {
+    font-size: 1rem;
+    max-width: 90%;
+  }
+
+  .sara-avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .sara-avatar-text {
+    font-size: 20px;
+  }
+
+  .sara-message {
+    max-width: 220px;
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+  }
+
+  /* Keep removing heavy animations on mobile */
+  /* .animated-shapes .shape { ... } */
+}
+
+/* Style for the new 'مش فاهم ؟' button */
+.feature-explanation-button {
+  background-color: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px; /* Pill shape */
+  font-family: 'Tajawal', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 2rem;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 3px hsla(var(--primary-h, 35), var(--primary-s, 45%), var(--primary-l, 55%), 0.2);
+}
+
+.feature-explanation-button:hover {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 20px hsla(var(--primary-h, 35), var(--primary-s, 45%), var(--primary-l, 55%), 0.35);
+}
+
+.feature-explanation-button:active {
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 4px 10px hsla(var(--primary-h, 35), var(--primary-s, 45%), var(--primary-l, 55%), 0.25);
+}
+
+/* Styles for Features Modal */
+.features-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  direction: rtl; /* Ensure RTL for the modal */
+}
+
+.features-modal-content {
+  /* background-color: var(--background); */ /* Commented out the old one */
+  background-color: hsl(var(--primary-h, 35), 30%, 96%); /* New base color: Soft, desaturated primary tint */
+  /* SVG icon pattern removed */
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 800px; /* Max width for the modal */
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  border: 1px solid var(--border);
+  font-family: 'Tajawal', sans-serif;
+}
+
+.features-modal-content h2 {
+  text-align: center;
+  color: var(--primary);
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.features-modal-content .close-button {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: block;
+  margin: 2rem auto 0;
+}
+
+.features-modal-content .close-button:hover {
+  background-color: hsl(var(--primary-h), var(--primary-s), calc(var(--primary-l) * 0.9));
+}
+
+/* Scrollbar styling for features modal */
+.features-modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.features-modal-content::-webkit-scrollbar-track {
+  background: var(--secondary-background);
+  border-radius: 10px;
+}
+
+.features-modal-content::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 10px;
+  border: 2px solid var(--secondary-background);
+}
+
+.features-modal-content::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--primary-h), var(--primary-s), calc(var(--primary-l) * 0.8));
+}
+
+/* Styles for Feature Cards within the modal */
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Single column for now, can be 2 for wider screens */
+  gap: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card {
+  background-color: var(--secondary-background);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  text-align: right; /* Ensure RTL text alignment */
+}
+
+.feature-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-color: var(--primary);
+}
+
+.feature-card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: center; /* Center the icon */
+  color: var(--primary); /* Use primary color for icon */
+}
+
+.feature-card-content {
+  flex-grow: 1;
+}
+
+.feature-card-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 0.75rem;
+}
+
+.feature-card-description {
+  font-size: 0.95rem;
+  color: var(--muted-foreground);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.feature-card-action {
+  display: flex;
+  justify-content: flex-end; /* Align to the right */
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--primary);
+  margin-top: auto; /* Pushes action to the bottom if card heights vary */
+}
+
+.feature-card-action .arrow {
+  margin-left: 0.5rem; /* Swapped to margin-left for RTL */
+  transition: transform 0.2s ease-in-out;
+}
+
+.feature-card:hover .feature-card-action .arrow {
+  transform: translateX(-3px); /* Arrow moves left on hover for RTL */
+}
+
+/* Responsive adjustments for feature cards if needed */
+@media (min-width: 768px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens and up */
+    gap: 1.5rem; 
+  }
+} 
