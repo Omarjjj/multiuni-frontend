@@ -17,8 +17,8 @@ import { toast } from "react-hot-toast";
 // Import university logo images
 import aaupLogo from '../assets/logos/aaup.png';
 import alqudsLogo from '../assets/logos/alquds.png';
-import birzeitLogo from '../assets/logos/beirzet.png';
-import bethlehemLogo from '../assets/logos/bethlahem.png';
+import birzeitLogo from '../assets/logos/birzeit.png';
+import bethlehemLogo from '../assets/logos/bethlehem.png';
 import najahLogo from '../assets/logos/najah.png';
 import polytechLogo from '../assets/logos/polytech.png';
 
@@ -653,53 +653,6 @@ const ChatPage: React.FC = () => {
     const cleanup = initChatBubbleAnimations();
     return cleanup;
   }, []);
-
-  // Inline styles for the table for now, can be moved to a CSS file
-  const tableStyles = `
-    .markdown-content table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-      margin-bottom: 15px;
-      font-size: 0.9em;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      border-radius: 8px; /* Rounded corners for the table */
-      overflow: hidden; /* Ensures box-shadow and border-radius clip correctly */
-    }
-    .markdown-content th,
-    .markdown-content td {
-      border: 1px solid var(--border-color, #ddd);
-      padding: 10px 14px;
-      text-align: right; /* Align text to the right for Arabic */
-      line-height: 1.6;
-    }
-    .markdown-content th {
-      background-color: var(--table-header-bg, #f0f4f8);
-      color: var(--table-header-text, #333);
-      font-weight: bold;
-      border-bottom: 2px solid var(--primary-color,rgb(219, 124, 97));
-    }
-    .markdown-content tbody tr:nth-child(even) {
-      background-color: var(--table-row-even-bg, #f9f9f9);
-    }
-    .markdown-content tbody tr:hover {
-      background-color: var(--table-row-hover-bg, #eef4ff);
-    }
-    .markdown-content table caption {
-      caption-side: top;
-      font-weight: bold;
-      margin-bottom: 10px;
-      font-size: 1.1em;
-      color: var(--text-primary, #333);
-      text-align: right;
-    }
-    /* Ensure newlines within table cells are handled if they are actual <br> tags or similar */
-    .markdown-content td br {
-        display: block; /* Ensure <br> creates a line break */
-        content: " "; /* Add some space for <br> */
-        margin-top: 0.5em; /* Spacing for <br> */
-    }
-  `;
 
   return (
     <motion.div 
