@@ -17,8 +17,8 @@ import { toast } from "react-hot-toast";
 // Import university logo images
 import aaupLogo from '../assets/logos/aaup.png';
 import alqudsLogo from '../assets/logos/alquds.png';
-import birzeitLogo from '../assets/logos/birzeit.png';
-import bethlehemLogo from '../assets/logos/bethlehem.png';
+import birzeitLogo from '../assets/logos/beirzet.png';
+import bethlehemLogo from '../assets/logos/bethlahem.png';
 import najahLogo from '../assets/logos/najah.png';
 import polytechLogo from '../assets/logos/polytech.png';
 
