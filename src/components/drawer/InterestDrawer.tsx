@@ -24,7 +24,7 @@ export const InterestDrawer: React.FC = () => {
                 <Button
                     variant="outline"
                     size="icon"
-                    className="fixed bottom-4 md:bottom-6 right-4 md:right-6 rounded-full shadow-lg w-12 h-12 bg-white hover:bg-gray-50 z-50 border-gray-300"
+                    className="fixed bottom-28 md:bottom-64 right-4 md:right-6 rounded-full shadow-lg w-12 h-12 bg-white hover:bg-gray-50 z-50 border-gray-300"
                 >
                     <Heart className="w-5 h-5 text-rose-500" />
                     {likedMajors.length > 0 && (

@@ -341,46 +341,130 @@ const UniversitySelectionPage: React.FC = () => {
       <AnimatePresence>
         {saraVisible && (
           <motion.div 
-            className="fixed bottom-4 md:bottom-6 left-4 md:left-6 z-50 cursor-pointer max-w-sm"
-            initial={{ opacity: 0, x: -100, rotate: -10 }}
-            animate={{ opacity: 1, x: 0, rotate: 0 }}
-            exit={{ opacity: 0, x: -100, rotate: -10 }}
-            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            className="fixed bottom-28 md:bottom-64 left-6 md:left-8 z-50 cursor-pointer max-w-sm
+                       "
+            initial={{ opacity: 0, x: -120, y: 20, rotate: -15, scale: 0.8 }}
+            animate={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
+            exit={{ opacity: 0, x: -120, y: 20, rotate: -15, scale: 0.8 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 260, 
+              damping: 20,
+              mass: 0.8,
+              delay: 0.2
+            }}
             onClick={handleSaraClick}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ 
+              scale: 1.08, 
+              y: -4,
+              transition: { type: "spring", stiffness: 400, damping: 25 }
+            }}
+            whileTap={{ scale: 0.96, y: -2 }}
+            style={{
+            }}
           >
             <div className="flex items-end gap-3">
               {/* Sara message bubble */}
               <motion.div 
-                className="bg-white/95 backdrop-blur-xl rounded-2xl rounded-bl-sm p-4 
-                           shadow-xl border border-white/30 max-w-xs"
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.2, type: "spring", stiffness: 400, damping: 25 }}
+                className="bg-gradient-to-br from-white/98 via-white/95 to-white/90 
+                           backdrop-blur-xl rounded-3xl rounded-bl-md p-5 
+                           before:absolute before:inset-0 before:rounded-3xl before:rounded-bl-md
+                           before:bg-gradient-to-br before:from-primary-50/50 before:via-transparent 
+                           before:to-primary-100/30 before:opacity-0 hover:before:opacity-100
+                           before:transition-opacity before:duration-300"
+                initial={{ scale: 0, opacity: 0, y: 10, rotateX: -15 }}
+                animate={{ scale: 1, opacity: 1, y: 0, rotateX: 0 }}
+                transition={{ 
+                  delay: 0.4, 
+                  type: "spring", 
+                  stiffness: 300, 
+                  damping: 20,
+                  mass: 0.6
+                }}
+                whileHover={{
+                  scale: 1.02,
+                  y: -2,
+                  transition: { type: "spring", stiffness: 400, damping: 25 }
+                }}
               >
-                <p className="text-gray-800 text-sm leading-relaxed font-arabic text-right">
+                <p className="text-gray-800 text-sm leading-relaxed font-arabic text-right relative z-10
+                           text-shadow-sm">
                   {saraMessage}
                 </p>
-                <div className="absolute bottom-0 right-4 w-0 h-0 border-l-8 border-l-transparent 
-                               border-r-8 border-r-transparent border-t-8 border-t-white/95 
-                               transform translate-y-full" />
+                
+                {/* Enhanced bubble tail with gradient */}
+                <div className="absolute bottom-0 right-5 transform translate-y-full">
+                  <div className="relative">
+                    <div className="w-0 h-0 border-l-10 border-l-transparent 
+                                   border-r-10 border-r-transparent border-t-10 border-t-white/95 
+                                   " />
+                    <div className="absolute -top-1 left-1 w-0 h-0 border-l-8 border-l-transparent 
+                                   border-r-8 border-r-transparent border-t-8 border-t-primary-50/30" />
+                  </div>
+                </div>
               </motion.div>
 
               {/* Sara avatar */}
               <motion.div 
                 className="relative flex-shrink-0"
-                whileHover={{ rotate: [0, -5, 5, 0] }}
-                transition={{ duration: 0.5 }}
+                whileHover={{ 
+                  rotate: [0, -8, 8, 0],
+                  scale: 1.05,
+                  transition: { duration: 0.6, type: "spring", stiffness: 300, damping: 20 }
+                }}
+                initial={{ scale: 0, rotate: -20 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ 
+                  delay: 0.6, 
+                  type: "spring", 
+                  stiffness: 200, 
+                  damping: 15 
+                }}
               >
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary-400 via-primary-500 to-primary-600 
-                               shadow-lg flex items-center justify-center text-white text-xl font-bold border-4 border-white/30">
-                  س
+                <div className="w-18 h-18 rounded-full bg-gradient-to-br from-primary-400 via-primary-500 to-primary-600 
+                               shadow-2xl flex items-center justify-center text-white text-2xl font-bold 
+                               border-4 border-white/50 backdrop-blur-sm relative overflow-hidden
+                               before:absolute before:inset-0 before:rounded-full 
+                               before:bg-gradient-to-tr before:from-white/20 before:via-transparent before:to-transparent
+                               after:absolute after:inset-0 after:rounded-full
+                               after:bg-gradient-to-bl after:from-transparent after:via-transparent after:to-primary-700/30">
+                  <span className="relative z-10 text-shadow-lg">س</span>
                 </div>
+                
+                {/* Enhanced pulse effect */}
                 <motion.div 
-                  className="absolute inset-0 rounded-full border-2 border-primary-400"
-                  animate={{ scale: [1, 1.2, 1], opacity: [0.7, 0, 0.7] }}
-                  transition={{ duration: 2, repeat: Infinity }}
+                  className="absolute inset-0 rounded-full border-3 border-primary-300/60"
+                  animate={{ 
+                    scale: [1, 1.4, 1], 
+                    opacity: [0.8, 0, 0.8],
+                    borderWidth: ["3px", "1px", "3px"]
+                  }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                />
+                
+                {/* Secondary pulse */}
+                <motion.div 
+                  className="absolute inset-0 rounded-full border-2 border-accent-400/40"
+                  animate={{ 
+                    scale: [1, 1.6, 1], 
+                    opacity: [0.6, 0, 0.6]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                />
+                
+                {/* Floating sparkles */}
+                <motion.div
+                  className="absolute -top-1 -right-1 w-2 h-2 bg-yellow-300 rounded-full"
+                  animate={{
+                    scale: [0, 1, 0],
+                    rotate: [0, 180, 360],
+                    opacity: [0, 1, 0]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: 1
+                  }}
                 />
               </motion.div>
             </div>

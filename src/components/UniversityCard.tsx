@@ -27,7 +27,7 @@ const UniversityCard: React.FC<UniversityCardProps> = React.memo(({ name, icon, 
       rotateY: 2,
       rotateX: 2,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 300,
         damping: 25,
         mass: 0.6,
@@ -37,7 +37,7 @@ const UniversityCard: React.FC<UniversityCardProps> = React.memo(({ name, icon, 
       scale: 0.98,
       y: -4,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 400,
         damping: 30,
       }
@@ -55,7 +55,7 @@ const UniversityCard: React.FC<UniversityCardProps> = React.memo(({ name, icon, 
       rotate: -2,
       filter: "brightness(1.05) drop-shadow(0 4px 8px rgba(176, 141, 87, 0.2))",
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 400,
         damping: 20,
       }
@@ -73,7 +73,7 @@ const UniversityCard: React.FC<UniversityCardProps> = React.memo(({ name, icon, 
       opacity: 1,
       scale: 1.05,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 300,
         damping: 20,
       }
@@ -86,7 +86,7 @@ const UniversityCard: React.FC<UniversityCardProps> = React.memo(({ name, icon, 
       x: "100%",
       transition: {
         duration: 0.6,
-        ease: "easeInOut",
+        ease: "easeInOut" as const,
         delay: 0.1
       }
     }
@@ -108,7 +108,6 @@ const UniversityCard: React.FC<UniversityCardProps> = React.memo(({ name, icon, 
         {/* Glass morphism background */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-white/20 to-white/10 
                         backdrop-blur-xl border border-white/20 rounded-2xl 
-                        shadow-lg group-hover:shadow-primary-500/20 
                         transition-all duration-300 ease-out
                         before:absolute before:inset-0 before:rounded-2xl 
                         before:bg-gradient-to-br before:from-primary-100/30 before:via-transparent before:to-primary-200/20
@@ -132,8 +131,8 @@ const UniversityCard: React.FC<UniversityCardProps> = React.memo(({ name, icon, 
           <motion.div
             className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 flex items-center justify-center
                        bg-gradient-to-br from-white/40 to-white/20 rounded-xl
-                       backdrop-blur-sm border border-white/30 shadow-md
-                       group-hover:shadow-lg transition-all duration-300"
+                       backdrop-blur-sm border border-white/30
+                       transition-all duration-300"
             variants={iconVariants}
           >
             <div className="w-full h-full flex items-center justify-center p-2">
@@ -173,7 +172,6 @@ const UniversityCard: React.FC<UniversityCardProps> = React.memo(({ name, icon, 
             <motion.div
               className="w-10 h-10 md:w-12 md:h-12 rounded-full 
                          bg-gradient-to-br from-primary-400 via-primary-500 to-primary-600
-                         shadow-md group-hover:shadow-lg group-hover:shadow-primary-500/30
                          flex items-center justify-center text-white
                          border border-primary-300/50 backdrop-blur-sm
                          transition-all duration-300"

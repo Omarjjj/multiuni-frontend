@@ -68,7 +68,6 @@
   padding: 1.75rem 1.5rem;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: relative;
-  box-shadow: 0 7px 20px hsla(var(--foreground-h, 30), var(--foreground-s, 12%), var(--foreground-l, 35%), 0.08);
   border: 1px solid var(--border);
   direction: rtl;
   contain: layout;
@@ -76,7 +75,6 @@
 
 .university-card:hover {
   transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 14px 35px hsla(var(--foreground-h, 30), var(--foreground-s, 12%), var(--foreground-l, 35%), 0.12);
   border-color: var(--primary);
   background-color: var(--card-hover, var(--accent));
 }
