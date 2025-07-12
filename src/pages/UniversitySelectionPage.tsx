@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import UniversityCard from '../components/UniversityCard';
 import { InterestDrawer } from '../components/drawer/InterestDrawer';
@@ -81,8 +81,8 @@ const UniversitySelectionPage: React.FC = () => {
     "كل خطوة مهمة في مستقبلك، اختار بحكمة!"
   ], []);
 
-  // Animation variants
-  const containerVariants = {
+  // Animation variants with proper typing
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -93,7 +93,7 @@ const UniversitySelectionPage: React.FC = () => {
     }
   };
 
-  const titleVariants = {
+  const titleVariants: Variants = {
     hidden: { 
       opacity: 0, 
       y: 50,
@@ -104,7 +104,7 @@ const UniversitySelectionPage: React.FC = () => {
       y: 0,
       scale: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 200,
         damping: 20,
         duration: 0.8
@@ -112,7 +112,7 @@ const UniversitySelectionPage: React.FC = () => {
     }
   };
 
-  const subtitleVariants = {
+  const subtitleVariants: Variants = {
     hidden: { 
       opacity: 0, 
       y: 30 
@@ -127,7 +127,7 @@ const UniversitySelectionPage: React.FC = () => {
     }
   };
 
-  const gridVariants = {
+  const gridVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -138,7 +138,7 @@ const UniversitySelectionPage: React.FC = () => {
     }
   };
 
-  const cardVariants = {
+  const cardVariants: Variants = {
     hidden: { 
       opacity: 0, 
       y: 50,
@@ -151,14 +151,14 @@ const UniversitySelectionPage: React.FC = () => {
       scale: 1,
       rotateY: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 300,
         damping: 25
       }
     }
   };
 
-  const floatingElementVariants = {
+  const floatingElementVariants: Variants = {
     animate: {
       y: [-20, 20, -20],
       rotate: [0, 180, 360],
@@ -166,7 +166,7 @@ const UniversitySelectionPage: React.FC = () => {
       transition: {
         duration: 6,
         repeat: Infinity,
-        ease: "easeInOut"
+        ease: [0.4, 0.0, 0.2, 1] // Custom cubic bezier instead of string
       }
     }
   };
@@ -341,7 +341,7 @@ const UniversitySelectionPage: React.FC = () => {
       <AnimatePresence>
         {saraVisible && (
           <motion.div 
-            className="fixed bottom-16 md:bottom-30 left-4 md:left-6 z-50 cursor-pointer max-w-sm"
+            className="fixed bottom-4 md:bottom-6 left-4 md:left-6 z-50 cursor-pointer max-w-sm"
             initial={{ opacity: 0, x: -100, rotate: -10 }}
             animate={{ opacity: 1, x: 0, rotate: 0 }}
             exit={{ opacity: 0, x: -100, rotate: -10 }}
