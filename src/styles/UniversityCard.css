@@ -1,0 +1,218 @@
+/* University Card - Enhanced with Tailwind utilities */
+/* Most styles are now handled by Tailwind classes in the component */
+
+/* Glass morphism utility classes */
+.glass-card {
+  background: rgba(253, 251, 248, 0.25);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Perspective utility for 3D effects */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+/* Enhanced hover animations for logos */
+.university-logo {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.university-logo:hover {
+  transform: scale(1.05) rotate(-2deg);
+  filter: drop-shadow(0 4px 12px rgba(176, 141, 87, 0.3));
+}
+
+/* Smooth transitions for all interactive elements */
+@media (prefers-reduced-motion: no-preference) {
+  .university-card * {
+    transition-property: transform, opacity, background-color, border-color, box-shadow;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .university-card * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Focus styles for accessibility */
+.university-card:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+  border-radius: 1.5rem;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .university-card {
+    border: 2px solid;
+    background: white;
+  }
+}
+
+.university-card {
+  background: var(--card);
+  border-radius: var(--radius, 16px);
+  overflow: hidden;
+  cursor: pointer;
+  height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1.75rem 1.5rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  box-shadow: 0 7px 20px hsla(var(--foreground-h, 30), var(--foreground-s, 12%), var(--foreground-l, 35%), 0.08);
+  border: 1px solid var(--border);
+  direction: rtl;
+  contain: layout;
+}
+
+.university-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 14px 35px hsla(var(--foreground-h, 30), var(--foreground-s, 12%), var(--foreground-l, 35%), 0.12);
+  border-color: var(--primary);
+  background-color: var(--card-hover, var(--accent));
+}
+
+.university-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  position: relative;
+  margin-top: 0;
+}
+
+.university-logo {
+  width: auto;
+  max-width: 90%;
+  height: 100px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  z-index: 3;
+  will-change: transform;
+  transform: translateZ(0);
+  margin: 0 auto;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.university-card:hover .university-logo {
+  transform: scale(1.06);
+}
+
+.university-card-text {
+  text-align: center;
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.university-card-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--foreground);
+  letter-spacing: 0.2px;
+  margin-bottom: 0.5rem;
+  text-shadow: none;
+  display: block;
+  line-height: 1.4;
+  font-family: 'Tajawal', sans-serif;
+}
+
+.university-card-divider {
+  width: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(var(--primary-hsl) / 0.4), transparent);
+  margin: 0 auto 0.75rem auto;
+  border-radius: 1px;
+  box-shadow: none;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+
+.university-card:hover .university-card-divider {
+  width: 70%;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+}
+
+.card-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--primary);
+  padding: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: none;
+  transition: all 0.3s ease;
+  opacity: 0.9;
+  transform: scale(0.95);
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.university-card:hover .card-arrow {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  transform: scale(1.1) translateX(-5px);
+  opacity: 1;
+}
+
+.card-arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 900px) {
+  .university-card {
+    height: 240px;
+    padding: 1.5rem 1.25rem;
+    contain: layout;
+  }
+
+  .university-logo {
+    height: 85px;
+  }
+
+  .university-card-name {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .university-card {
+    height: 220px;
+    padding: 1.25rem 1rem;
+    contain: layout;
+  }
+
+  .university-logo {
+    height: 75px;
+  }
+
+  .university-card-name {
+    font-size: 1.15rem;
+  }
+  
+  .card-arrow {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .card-arrow svg {
+    width: 16px;
+    height: 16px;
+  }
+} 

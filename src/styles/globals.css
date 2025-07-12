@@ -1,0 +1,24 @@
+/* 
+ * Global styles for the multi-university assistant
+ * This file is imported by index.css
+ */
+
+/* 
+ * These are basic styles that will be applied globally,
+ * before Tailwind utilities are applied
+ */
+
+:root {
+  /* System theme detection */
+  color-scheme: dark;
+}
+
+/* Basic smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure layout fills viewport */
+body, #root {
+  min-height: 100vh;
+}

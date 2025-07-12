@@ -1,0 +1,18 @@
+{
+  "files": [],
+  "compilerOptions": {
+    /* Skip type checking of declaration files */
+    "skipLibCheck": true,
+    /* Path Aliases */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+    // Note: Other compilerOptions might be needed here if they affect module resolution
+    // but let's start with just the paths for shadcn detection.
+  },
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}
