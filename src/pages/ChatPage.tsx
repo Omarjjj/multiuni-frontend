@@ -755,50 +755,68 @@ const ChatPage: React.FC = () => {
                   ? (animatedMessages.get(message.id) || '')
                   : message.text;
 
-                return (
-                  <motion.div
-                    key={message.id}
-                    className={`flex items-start gap-3 ${
-                      message.sender === 'user' 
-                        ? 'justify-end' 
-                        : 'justify-start'
-                    }`}
-                    variants={messageVariants}
-                    initial="hidden"
-                    animate="visible"
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    {/* Avatar */}
-                    {message.sender === 'assistant' && universityId && (
-                      <motion.div 
-                        className="flex-shrink-0 w-10 h-10 rounded-2xl overflow-hidden
-                                   bg-white/20 backdrop-blur-sm border border-white/30 p-2"
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                      >
-                        <img
-                          src={universityLogos[universityId]}
-                          alt="Assistant"
-                          className="w-full h-full object-contain"
-                        />
-                      </motion.div>
-                    )}
-
-                    {/* Message bubble */}
+                if (message.sender === 'user') {
+                  // User messages - aligned to the right
+                  return (
                     <motion.div
-                      className={`max-w-md px-4 py-3 rounded-3xl shadow-lg backdrop-blur-sm border ${
-                        message.sender === 'user'
-                          ? 'bg-gradient-to-br from-primary-500 to-primary-600 text-white border-primary-400/30'
-                          : 'bg-white/80 text-gray-800 border-white/30'
-                      } ${
-                        message.sender === 'user' 
-                          ? 'rounded-br-lg' 
-                          : 'rounded-bl-lg'
-                      }`}
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                      key={message.id}
+                      className="flex justify-end w-full"
+                      variants={messageVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ delay: index * 0.1 }}
                     >
-                      {message.sender === 'assistant' ? (
+                      <motion.div
+                        className="max-w-md px-4 py-3 rounded-3xl rounded-br-lg shadow-lg backdrop-blur-sm border
+                                  bg-gradient-to-br from-primary-500 to-primary-600 text-white border-primary-400/30"
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                      >
+                        <p className="text-sm leading-relaxed">{displayText}</p>
+                        <div className="text-xs mt-2 opacity-70 text-right text-white/80">
+                          {message.timestamp.toLocaleTimeString('ar', { 
+                            hour: '2-digit', 
+                            minute: '2-digit' 
+                          })}
+                        </div>
+                      </motion.div>
+                    </motion.div>
+                  );
+                } else {
+                  // Assistant messages - aligned to the left
+                  return (
+                    <motion.div
+                      key={message.id}
+                      className="flex items-start gap-3 w-full"
+                      variants={messageVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      {/* Avatar for assistant messages */}
+                      {universityId && (
+                        <motion.div 
+                          className="flex-shrink-0 w-10 h-10 rounded-2xl overflow-hidden
+                                     bg-white/20 backdrop-blur-sm border border-white/30 p-2"
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                        >
+                          <img
+                            src={universityLogos[universityId]}
+                            alt="Assistant"
+                            className="w-full h-full object-contain"
+                          />
+                        </motion.div>
+                      )}
+
+                      {/* Message bubble */}
+                      <motion.div
+                        className="max-w-md px-4 py-3 rounded-3xl rounded-bl-lg shadow-lg backdrop-blur-sm border
+                                  bg-white/80 text-gray-800 border-white/30"
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                      >
                         <div className="markdown-content">
                           <ReactMarkdown 
                             remarkPlugins={[remarkGfm]}
@@ -837,22 +855,18 @@ const ChatPage: React.FC = () => {
                             {displayText}
                           </ReactMarkdown>
                         </div>
-                      ) : (
-                        <p className="text-sm leading-relaxed">{displayText}</p>
-                      )}
-                      
-                      {/* Timestamp */}
-                      <div className={`text-xs mt-2 opacity-70 ${
-                        message.sender === 'user' ? 'text-right text-white/80' : 'text-left text-gray-600'
-                      }`}>
-                        {message.timestamp.toLocaleTimeString('ar', { 
-                          hour: '2-digit', 
-                          minute: '2-digit' 
-                        })}
-                      </div>
+                        
+                        {/* Timestamp */}
+                        <div className="text-xs mt-2 opacity-70 text-left text-gray-600">
+                          {message.timestamp.toLocaleTimeString('ar', { 
+                            hour: '2-digit', 
+                            minute: '2-digit' 
+                          })}
+                        </div>
+                      </motion.div>
                     </motion.div>
-                  </motion.div>
-                );
+                  );
+                }
               })}
             </AnimatePresence>
 
