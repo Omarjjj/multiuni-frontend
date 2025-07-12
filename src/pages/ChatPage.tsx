@@ -228,7 +228,7 @@ const ChatPage: React.FC = () => {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 400,
         damping: 25
       }
@@ -246,7 +246,7 @@ const ChatPage: React.FC = () => {
       y: 0,
       scale: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 500,
         damping: 30
       }
@@ -259,7 +259,7 @@ const ChatPage: React.FC = () => {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 400,
         damping: 25,
         delay: 0.3
@@ -760,7 +760,7 @@ const ChatPage: React.FC = () => {
                     key={message.id}
                     className={`flex items-start gap-3 ${
                       message.sender === 'user' 
-                        ? 'flex-row-reverse justify-start' 
+                        ? 'justify-end' 
                         : 'justify-start'
                     }`}
                     variants={messageVariants}
